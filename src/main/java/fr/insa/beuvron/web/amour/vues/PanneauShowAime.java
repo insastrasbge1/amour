@@ -22,7 +22,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
 import java.sql.SQLException;
 import java.util.List;
@@ -43,7 +43,7 @@ public class PanneauShowAime extends MyVerticalLayout {
         MyVerticalLayout vlAime = new MyVerticalLayout();
         vlAime.add(new H3("vous aimez"));
         try {
-            List<Utilisateur> datas = Aime.quiSontAimesPar(
+            List<Utilisateur> datas = GestionBdD.quiSontAimesPar(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAime.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
@@ -53,7 +53,7 @@ public class PanneauShowAime extends MyVerticalLayout {
         MyVerticalLayout vlAimePar = new MyVerticalLayout();
         vlAimePar.add(new H3("vous êtes aimé par"));
         try {
-            List<Utilisateur> datas = Aime.quiAiment(
+            List<Utilisateur> datas = GestionBdD.quiAiment(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAimePar.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class PanneauShowAime extends MyVerticalLayout {
         MyVerticalLayout vlPasAimes = new MyVerticalLayout();
         vlPasAimes.add(new H3("vous n'aimez pas"));
         try {
-            List<Utilisateur> datas = Aime.quiNeSontPasAimesPar(
+            List<Utilisateur> datas = GestionBdD.quiNeSontPasAimesPar(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlPasAimes.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class PanneauShowAime extends MyVerticalLayout {
         MyVerticalLayout vlAmis = new MyVerticalLayout();
         vlAmis.add(new H3("vos vrai amis"));
         try {
-            List<Utilisateur> datas = Aime.vraiAmisDe(
+            List<Utilisateur> datas = GestionBdD.vraiAmisDe(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAmis.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {

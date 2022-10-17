@@ -24,7 +24,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
 import java.sql.SQLException;
 import java.util.List;
@@ -56,7 +56,7 @@ public class PanneauModifyAime extends MyVerticalLayout {
         this.vbValidate = new Button("Valider les modifs.");
         this.vbValidate.addClickListener((event) -> {
             try {
-                Aime.changeAllAimes(this.main.getSessionInfo().getConBdD(),
+                GestionBdD.changeAllAimes(this.main.getSessionInfo().getConBdD(),
                         this.main.getSessionInfo().getCurUser().orElseThrow(),
                         this.vaime.getDatas());
                 Notification.show("Modifications validées");
@@ -76,7 +76,7 @@ public class PanneauModifyAime extends MyVerticalLayout {
         MyVerticalLayout vlPasAimes = new MyVerticalLayout();
         vlPasAimes.add(new H3("vous n'aimez pas"));
         try {
-            List<Utilisateur> datas = Aime.quiNeSontPasAimesPar(
+            List<Utilisateur> datas = GestionBdD.quiNeSontPasAimesPar(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             this.vpasAime = new UtilisateurSelectGrid(datas);
             vlPasAimes.add(this.vpasAime);
@@ -103,7 +103,7 @@ public class PanneauModifyAime extends MyVerticalLayout {
         MyVerticalLayout vlAime = new MyVerticalLayout();
         vlAime.add(new H3("vous aimez"));
         try {
-            List<Utilisateur> datas = Aime.quiSontAimesPar(
+            List<Utilisateur> datas = GestionBdD.quiSontAimesPar(
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             this.vaime = new UtilisateurSelectGrid(datas);
             vlAime.add(this.vaime);

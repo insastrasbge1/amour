@@ -21,7 +21,7 @@ package fr.insa.beuvron.web.amour.vues;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +41,7 @@ public class ListeDesUtilisateurs extends VerticalLayout {
         this.add(new H3("liste de tous les utilisateurs"));
         try {
             this.vgAllUsers = new UtilisateurGrid(
-                    Aime.tousLesUtilisateurs(this.main.getSessionInfo().getConBdD()));
+                    GestionBdD.tousLesUtilisateurs(this.main.getSessionInfo().getConBdD()));
             this.add(this.vgAllUsers);
         } catch (SQLException ex) {
             this.add(new H3("Problème BdD : " + ex.getLocalizedMessage()));

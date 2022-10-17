@@ -23,7 +23,7 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import java.sql.SQLException;
 
 /**
@@ -65,8 +65,7 @@ public class DefConnectionBDD extends MyVerticalLayout {
         this.vbRetryConnect = new Button("retenter de se connecter");
         this.vbRetryConnect.addClickListener((event) -> {
             try {
-                this.main.getSessionInfo().setConBdD(
-                        Aime.connectGeneralPostGres(
+                this.main.getSessionInfo().setConBdD(GestionBdD.connectGeneralPostGres(
                                 this.vtHost.getValue(),
                                 Integer.parseInt(this.vtPort.getValue()),
                                 this.vtDatabase.getValue(),

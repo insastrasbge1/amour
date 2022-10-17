@@ -46,11 +46,16 @@ public class InitialLoginEntete extends MyHorizontalLayout {
         });
         this.add(this.vbLogin,this.vbNouvelUtilisateur);
         
-        Button enPlus = new Button("dis coucou");
+        Button enPlus = new Button("dis que coucou");
         enPlus.addClickListener((event) -> {
             Notification.show("Ah que coucou");
         });
         this.add(enPlus);
+        Button enPlus2 = new Button("dis Salut2");
+        enPlus2.addClickListener((event) -> {
+            Notification.show("Ah que salut");
+        });
+        this.add(enPlus2);
 
     }
     

@@ -24,7 +24,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -55,14 +55,14 @@ public class NouvelUtilisateur extends FormLayout {
             String pass = this.vtPass.getValue();
             try {
 
-                int id = Aime.createUtilisateur(con, nom, pass);
+                int id = GestionBdD.createUtilisateur(con, nom, pass);
                 Utilisateur curU = new Utilisateur(id, nom, pass);
                 this.main.getSessionInfo().setCurUser(Optional.of(curU));
                 Notification.show("Utilisateur " + nom + " créé");
                 this.main.setMainContent(new MainAfterLogin(this.main));
                 this.main.setEntete(new EnteteAfterLogin(this.main));
 
-            } catch (Aime.NomExisteDejaException ex) {
+            } catch (GestionBdD.NomExisteDejaException ex) {
                 Notification.show("Ce nom existe déjà, choississez en un autre");
             } catch (SQLException ex) {
                 Notification.show("Problème BdD : " + ex.getLocalizedMessage());

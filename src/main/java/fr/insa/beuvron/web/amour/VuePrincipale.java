@@ -21,7 +21,7 @@ package fr.insa.beuvron.web.amour;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.vues.BdDNonAccessible;
 import fr.insa.beuvron.web.amour.vues.BienvenueMainVue;
 import fr.insa.beuvron.web.amour.vues.InitialLoginEntete;
@@ -65,7 +65,7 @@ public class VuePrincipale extends MyVerticalLayout {
         this.mainContent.setHeightFull();
         this.add(this.mainContent);
         try {
-            this.sessionInfo.setConBdD(Aime.defautConnect());
+            this.sessionInfo.setConBdD(GestionBdD.defautConnect());
             this.setEntete(new InitialLoginEntete(this));
             this.setMainContent(new BienvenueMainVue(this));
         } catch (ClassNotFoundException | SQLException ex) {

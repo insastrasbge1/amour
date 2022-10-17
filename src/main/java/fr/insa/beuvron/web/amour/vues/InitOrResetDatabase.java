@@ -22,7 +22,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -54,7 +54,7 @@ public class InitOrResetDatabase extends MyVerticalLayout {
         this.vbInitDatabase.addClickListener((event) -> {
             Connection con = this.main.getSessionInfo().getConBdD();
             try {
-                Aime.recreeTout(con);
+                GestionBdD.recreeTout(con);
                 Notification.show("OK : BdD (ré)-initialisée");
             } catch (SQLException ex) {
                 Notification.show("Problème : "+ex.getLocalizedMessage());

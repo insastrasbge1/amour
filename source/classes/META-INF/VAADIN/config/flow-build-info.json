@@ -1,0 +1,18 @@
+{
+  "productionMode": false,
+  "useDeprecatedV14Bootstrapping": false,
+  "eagerServerLoad": false,
+  "npmFolder": "H:\\tempDev\\amour",
+  "node.version": "v16.17.1",
+  "node.download.root": "https://nodejs.org/dist/",
+  "generatedFolder": "H:\\tempDev\\amour\\target\\frontend",
+  "frontendFolder": "H:\\tempDev\\amour\\frontend",
+  "connect.javaSourceFolder": "H:\\tempDev\\amour\\src\\main\\java",
+  "javaResourceFolder": "H:\\tempDev\\amour\\src\\main\\resources",
+  "connect.applicationProperties": "H:\\tempDev\\amour\\src\\main\\resources\\application.properties",
+  "connect.openApiFile": "H:\\tempDev\\amour\\target\\generated-resources\\openapi.json",
+  "project.frontend.generated": "H:\\tempDev\\amour\\frontend\\generated",
+  "pnpm.enable": false,
+  "require.home.node": false,
+  "build.folder": "target"
+}

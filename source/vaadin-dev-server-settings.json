@@ -1,0 +1,14 @@
+{
+  "frontendFolder": "H:/tempDev/amour/frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "H:/tempDev/amour/target/flow-frontend",
+  "staticOutput": "H:/tempDev/amour/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "frontendBundleOutput": "H:\\tempDev\\amour\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "addonFrontendFolder": "target/flow-frontend/",
+  "themeName": "mytodo",
+  "clientServiceWorkerSource": "H:\\tempDev\\amour\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}

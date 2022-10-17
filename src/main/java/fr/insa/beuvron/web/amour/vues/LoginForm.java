@@ -23,7 +23,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import fr.insa.beuvron.web.amour.VuePrincipale;
-import fr.insa.beuvron.web.amour.bdd.Aime;
+import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -57,7 +57,7 @@ public class LoginForm extends MyVerticalLayout{
         String pass = this.vpass.getValue();
         try {
             Connection con = this.main.getSessionInfo().getConBdD();
-            Optional<Utilisateur> user = Aime.login(con, nom, pass);
+            Optional<Utilisateur> user = GestionBdD.login(con, nom, pass);
             if(user.isEmpty()) {
                 Notification.show("Utilisateur ou pass invalide");
             } else {
