@@ -25,12 +25,11 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import fr.insa.beuvron.web.amour.VuePrincipale;
 import fr.insa.beuvron.web.amour.bdd.GestionBdD;
+import fr.insa.beuvron.web.amour.model.Role;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -56,14 +55,18 @@ public class NouvelUtilisateur extends FormLayout {
             String nom = this.vtNom.getValue();
             String pass = this.vtPass.getValue();
             try {
+                Role r = this.cRole.selectedIdRole();
+                if (r == null) {
+                    Notification.show("Vous devez selectionner un role");
+                } else {
 
-                // TODO : gérer le role effectif
-                int id = GestionBdD.createUtilisateur(con, nom, pass,2);
-                Utilisateur curU = new Utilisateur(id, nom, pass,"user");
-                this.main.getSessionInfo().setCurUser(Optional.of(curU));
-                Notification.show("Utilisateur " + nom + " créé");
-                this.main.setMainContent(new MainAfterLogin(this.main));
-                this.main.setEntete(new EnteteAfterLogin(this.main));
+                    int id = GestionBdD.createUtilisateur(con, nom, pass, r.getId());
+                    Utilisateur curU = new Utilisateur(id, nom, pass, r.getNrole());
+                    this.main.getSessionInfo().setCurUser(Optional.of(curU));
+                    Notification.show("Utilisateur " + nom + " créé");
+                    this.main.setMainContent(new MainAfterLogin(this.main));
+                    this.main.setEntete(new EnteteAfterLogin(this.main));
+                }
 
             } catch (GestionBdD.NomExisteDejaException ex) {
                 Notification.show("Ce nom existe déjà, choississez en un autre");
@@ -71,7 +74,7 @@ public class NouvelUtilisateur extends FormLayout {
                 Notification.show("Problème BdD : " + ex.getLocalizedMessage());
             }
         });
-        this.add(this.vtNom, this.vtPass,this.cRole, this.vbValidate);
+        this.add(this.vtNom, this.vtPass, this.cRole, this.vbValidate);
     }
 
 }

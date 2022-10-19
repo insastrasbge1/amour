@@ -26,9 +26,18 @@ public class RoleCombobox extends ComboBox<Role> {
         try {
             this.setItems(GestionBdD.tousLesRoles(this.main.getSessionInfo().getConBdD()));
             this.setItemLabelGenerator(Role::getNrole);
+            this.setPlaceholder("select role");
         } catch (SQLException ex) {
             List<Role> bidon = new ArrayList<>();
             bidon.add(new Role(-1, "!!Erreur BdD!!"));
+        }
+    }
+
+    public Role selectedIdRole() {
+        if (this.hasValidValue()) {
+            return this.getValue();
+        } else {
+            return null;
         }
     }
 
