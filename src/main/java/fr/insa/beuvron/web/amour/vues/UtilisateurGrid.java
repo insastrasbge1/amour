@@ -42,7 +42,10 @@ public class UtilisateurGrid extends Grid<Utilisateur>{
                 .setHeader("Nom");
         cNom.setSortable(true);
         
-        this.setItems(datas);
+       Column<Utilisateur> cNomRole = this.addColumn(Utilisateur::getNomRole)
+                .setHeader("Role");
+       
+         this.setItems(datas);
         // pour affichage compact pour transparents
         // this.setMaxHeight("12em");
     }

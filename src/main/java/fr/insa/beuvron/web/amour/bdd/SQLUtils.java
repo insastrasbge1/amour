@@ -25,6 +25,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.text.StringEscapeUtils;
 
 /**
  *
@@ -62,5 +63,56 @@ public class SQLUtils {
             return new ResultSetAsList(entetes, datas);
         }
     }
+    
+        /**
+     * retourne une représentation d'un 'ResultSet' sous forme d'une table HTML.
+     * repris de fr.insa.beuvron.cours.m3.database.ResultSetUtils.
+     * <p>
+     * remarquez que la table affichée est assez basique mais que la méthode est
+     * trés générale : elle peut afficher n'importe quel ResultSet.
+     * </p>
+     *
+     * @param rs le ResultSet
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public static String formatResultSetAsHTMLTable(ResultSet rs) throws Exception {
+        StringBuilder res = new StringBuilder();
+        // il est également possible d'avoir des information sur la 'structure'
+        // du Resultset : nombre de colonnes, nom des colonnes ...
+        // toutes ces informations sont contenues dans le 'metadata' associé
+        // au ResultSet
+        String headerStyle = "STYLE=\"border-top: 3px solid #000000;"
+                + " border-bottom: 3px solid #000000;"
+                + " border-left: 1px solid #000000;"
+                + " border-right: 1px solid #000000\""
+                + " ALIGN=LEFT";
+        String normalStyle = "STYLE=\"border-bottom: 1px solid #000000;"
+                + " border-left: 1px solid #000000;"
+                + " border-right: 1px solid #000000\""
+                + "ALIGN=LEFT";
+        ResultSetMetaData metadata = rs.getMetaData();
+        int nombreColonnes = metadata.getColumnCount();
+        res.append("<TABLE CELLSPACING=0 COLS=" + nombreColonnes + " BORDER=1>\n");
+        res.append("<TBODY>\n");
+        res.append("<TR>\n");
+        for (int i = 1; i <= nombreColonnes; i++) {
+            res.append("  <TD " + headerStyle + ">" + metadata.getColumnName(i) + "</TD>\n");
+        }
+        res.append("</TR>\n");
+        while (rs.next()) {
+            res.append("<TR>\n");
+            for (int i = 1; i <= nombreColonnes; i++) {
+                res.append("  <TD " + normalStyle + ">"
+                        + StringEscapeUtils.escapeHtml4("" + rs.getObject(i)) + "</TD>\n");
+            }
+            res.append("</TR>\n");
+        }
+        res.append("</TBODY>\n");
+        res.append("</TABLE>\n");
+        return res.toString();
+    }
+
+
 
 }

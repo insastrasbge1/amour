@@ -71,7 +71,7 @@ public class DefConnectionBDD extends MyVerticalLayout {
                                 this.vtDatabase.getValue(),
                                 this.vtUser.getValue(),
                                 this.vtPass.getValue()));
-                this.main.setEntete(new InitialLoginEntete(this.main));
+                this.main.setEntete(new EnteteInitialLogin(this.main));
                 this.main.setMainContent(new BienvenueMainVue(this.main));
 
             } catch (ClassNotFoundException | SQLException ex) {

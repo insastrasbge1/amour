@@ -1,4 +1,5 @@
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\ListeDesUtilisateurs.java
+H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\RoleCombobox.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\InitOrResetDatabase.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\LoginMain.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\MyVerticalLayout.java
@@ -13,6 +14,7 @@ H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\BdDNonAccessible.j
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\bdd\SQLUtils.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\ConfigGenerale.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\UtilisateurGrid.java
+H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\model\Role.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\Application.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\utils\ConsoleFdB.java
 H:\tempDev\amour\src\main\java\fr\insa\beuvron\web\amour\vues\MainAfterLogin.java

@@ -47,7 +47,7 @@ public class PanneauShowAime extends MyVerticalLayout {
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAime.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
-            vlAime.add(new H1("Probleme BdD"));
+            vlAime.add(new H1("Probleme BdD : "+ex.getLocalizedMessage()));
         }
         hlAime.add(vlAime);
         MyVerticalLayout vlAimePar = new MyVerticalLayout();
@@ -57,7 +57,7 @@ public class PanneauShowAime extends MyVerticalLayout {
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAimePar.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
-            vlAimePar.add(new H1("Probleme BdD"));
+            vlAimePar.add(new H1("Probleme BdD : "+ex.getLocalizedMessage()));
         }
         hlAime.add(vlAimePar);
         this.add(hlAime);
@@ -70,7 +70,7 @@ public class PanneauShowAime extends MyVerticalLayout {
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlPasAimes.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
-            vlPasAimes.add(new H1("Probleme BdD"));
+            vlPasAimes.add(new H1("Probleme BdD : "+ex.getLocalizedMessage()));
         }
         hlAime2.add(vlPasAimes);
         MyVerticalLayout vlAmis = new MyVerticalLayout();
@@ -80,7 +80,7 @@ public class PanneauShowAime extends MyVerticalLayout {
                     this.main.getSessionInfo().getConBdD(), this.main.getSessionInfo().getCurUser().orElseThrow());
             vlAmis.add(new UtilisateurGrid(datas));
         } catch (SQLException ex) {
-            vlAmis.add(new H1("Probleme BdD"));
+            vlAmis.add(new H1("Probleme BdD : "+ex.getLocalizedMessage()));
         }
         hlAime2.add(vlAmis);
         this.add(hlAime2);

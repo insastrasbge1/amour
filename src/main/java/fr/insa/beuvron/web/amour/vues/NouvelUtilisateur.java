@@ -42,12 +42,14 @@ public class NouvelUtilisateur extends FormLayout {
 
     private TextField vtNom;
     private PasswordField vtPass;
+    private RoleCombobox cRole;
     private Button vbValidate;
 
     public NouvelUtilisateur(VuePrincipale main) {
         this.main = main;
         this.vtNom = new TextField("nom");
         this.vtPass = new PasswordField("pass");
+        this.cRole = new RoleCombobox(main);
         this.vbValidate = new Button("Valider");
         this.vbValidate.addClickListener((event) -> {
             Connection con = this.main.getSessionInfo().getConBdD();
@@ -55,8 +57,9 @@ public class NouvelUtilisateur extends FormLayout {
             String pass = this.vtPass.getValue();
             try {
 
-                int id = GestionBdD.createUtilisateur(con, nom, pass);
-                Utilisateur curU = new Utilisateur(id, nom, pass);
+                // TODO : gérer le role effectif
+                int id = GestionBdD.createUtilisateur(con, nom, pass,2);
+                Utilisateur curU = new Utilisateur(id, nom, pass,"user");
                 this.main.getSessionInfo().setCurUser(Optional.of(curU));
                 Notification.show("Utilisateur " + nom + " créé");
                 this.main.setMainContent(new MainAfterLogin(this.main));
@@ -68,7 +71,7 @@ public class NouvelUtilisateur extends FormLayout {
                 Notification.show("Problème BdD : " + ex.getLocalizedMessage());
             }
         });
-        this.add(this.vtNom, this.vtPass, this.vbValidate);
+        this.add(this.vtNom, this.vtPass,this.cRole, this.vbValidate);
     }
 
 }

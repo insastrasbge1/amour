@@ -24,7 +24,7 @@ import com.vaadin.flow.router.Route;
 import fr.insa.beuvron.web.amour.bdd.GestionBdD;
 import fr.insa.beuvron.web.amour.vues.BdDNonAccessible;
 import fr.insa.beuvron.web.amour.vues.BienvenueMainVue;
-import fr.insa.beuvron.web.amour.vues.InitialLoginEntete;
+import fr.insa.beuvron.web.amour.vues.EnteteInitialLogin;
 import fr.insa.beuvron.web.amour.vues.MyHorizontalLayout;
 import fr.insa.beuvron.web.amour.vues.MyVerticalLayout;
 import java.sql.SQLException;
@@ -66,7 +66,7 @@ public class VuePrincipale extends MyVerticalLayout {
         this.add(this.mainContent);
         try {
             this.sessionInfo.setConBdD(GestionBdD.defautConnect());
-            this.setEntete(new InitialLoginEntete(this));
+            this.setEntete(new EnteteInitialLogin(this));
             this.setMainContent(new BienvenueMainVue(this));
         } catch (ClassNotFoundException | SQLException ex) {
             this.setMainContent(new BdDNonAccessible(this));

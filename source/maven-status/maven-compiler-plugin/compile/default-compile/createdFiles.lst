@@ -8,8 +8,10 @@ fr\insa\beuvron\web\amour\vues\InitialLoginEntete.class
 fr\insa\beuvron\web\amour\bdd\GestionBdD.class
 fr\insa\beuvron\web\amour\bdd\SQLUtils.class
 fr\insa\beuvron\web\amour\vues\PanneauModifyAime.class
+fr\insa\beuvron\web\amour\vues\RoleCombobox.class
 fr\insa\beuvron\web\amour\model\Utilisateur.class
 fr\insa\beuvron\web\amour\bdd\GestionBdD$NomExisteDejaException.class
+fr\insa\beuvron\web\amour\model\Role.class
 fr\insa\beuvron\web\amour\vues\ListeDesUtilisateurs.class
 fr\insa\beuvron\web\amour\vues\LoginMain.class
 fr\insa\beuvron\web\amour\vues\NouvelUtilisateur.class

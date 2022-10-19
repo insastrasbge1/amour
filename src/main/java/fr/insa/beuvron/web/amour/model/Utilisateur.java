@@ -27,11 +27,13 @@ public class Utilisateur {
     private final int id;
     private String nom;
     private String pass;
+    private String nomRole;
 
-    public Utilisateur(int id, String nom, String pass) {
+    public Utilisateur(int id, String nom, String pass, String nomRole) {
         this.id = id;
         this.nom = nom;
         this.pass = pass;
+        this.nomRole = nomRole;
     }
 
     /**
@@ -67,6 +69,10 @@ public class Utilisateur {
      */
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getNomRole() {
+        return nomRole;
     }
     
     

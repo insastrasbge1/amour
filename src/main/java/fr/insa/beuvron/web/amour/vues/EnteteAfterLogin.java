@@ -53,7 +53,7 @@ public class EnteteAfterLogin extends MyHorizontalLayout {
     
     public void doLogout() {
         this.main.getSessionInfo().setCurUser(Optional.empty());
-        this.main.setEntete(new InitialLoginEntete(this.main));
+        this.main.setEntete(new EnteteInitialLogin(this.main));
         this.main.setMainContent(new BienvenueMainVue(this.main));
     }
     
