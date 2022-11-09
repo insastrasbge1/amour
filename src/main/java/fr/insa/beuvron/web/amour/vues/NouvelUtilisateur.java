@@ -41,14 +41,14 @@ public class NouvelUtilisateur extends FormLayout {
 
     private TextField vtNom;
     private PasswordField vtPass;
-    private RoleCombobox cRole;
+    private RoleComboBox cRole;
     private Button vbValidate;
 
     public NouvelUtilisateur(VuePrincipale main) {
         this.main = main;
         this.vtNom = new TextField("nom");
         this.vtPass = new PasswordField("pass");
-        this.cRole = new RoleCombobox(main);
+        this.cRole = new RoleComboBox(main);
         this.vbValidate = new Button("Valider");
         this.vbValidate.addClickListener((event) -> {
             Connection con = this.main.getSessionInfo().getConBdD();

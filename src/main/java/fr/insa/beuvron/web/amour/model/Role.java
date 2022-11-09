@@ -18,6 +18,16 @@ public class Role {
         this.nrole = nrole;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Role) {
+            Role r = (Role) obj;
+            return this.id == r.id;
+        } else {
+            return false;
+        }
+    }
+    
     /**
      * @return the id
      */

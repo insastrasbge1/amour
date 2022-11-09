@@ -33,6 +33,7 @@ import java.sql.SQLException;
 public class DefConnectionBDD extends MyVerticalLayout {
 
     private VuePrincipale main;
+    private SelectSGBDCombo sgbd;
     private TextField vtHost;
     private TextField vtPort;
     private TextField vtDatabase;
@@ -52,6 +53,7 @@ public class DefConnectionBDD extends MyVerticalLayout {
         this.add(note);
         this.getStyle().set("border", "2px solid " + "red");
 
+        this.sgbd = new SelectSGBDCombo();
         this.vtHost = new TextField("host");
         this.vtHost.setValue("localhost");
         this.vtPort = new TextField("port");
@@ -65,19 +67,32 @@ public class DefConnectionBDD extends MyVerticalLayout {
         this.vbRetryConnect = new Button("retenter de se connecter");
         this.vbRetryConnect.addClickListener((event) -> {
             try {
-                this.main.getSessionInfo().setConBdD(GestionBdD.connectGeneralPostGres(
+                if (this.sgbd.selectedSGBD().isEmpty()) {
+                    Notification.show("No sgbd selected");
+                } else {
+                    if (this.sgbd.selectedSGBD().orElseThrow() == GestionBdD.PostgresqlSGBD) {
+                        this.main.getSessionInfo().setConBdD(GestionBdD.connectGeneralPostGres(
                                 this.vtHost.getValue(),
                                 Integer.parseInt(this.vtPort.getValue()),
                                 this.vtDatabase.getValue(),
                                 this.vtUser.getValue(),
                                 this.vtPass.getValue()));
-                this.main.setEntete(new EnteteInitialLogin(this.main));
-                this.main.setMainContent(new BienvenueMainVue(this.main));
+                    } else {
+                        this.main.getSessionInfo().setConBdD(GestionBdD.connectGeneralMySQL(
+                                this.vtHost.getValue(),
+                                Integer.parseInt(this.vtPort.getValue()),
+                                this.vtDatabase.getValue(),
+                                this.vtUser.getValue(),
+                                this.vtPass.getValue()));
 
+                    }
+                    this.main.setEntete(new EnteteInitialLogin(this.main));
+                    this.main.setMainContent(new BienvenueMainVue(this.main));
+                }
             } catch (ClassNotFoundException | SQLException ex) {
                 Notification.show("Problème : " + ex.getLocalizedMessage());
             }
         });
-        this.add(vtHost, vtPort, vtDatabase, vtUser, vtPass, vbRetryConnect);
+        this.add(sgbd, vtHost, vtPort, vtDatabase, vtUser, vtPass, vbRetryConnect);
     }
 }

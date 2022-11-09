@@ -2,13 +2,14 @@ fr\insa\beuvron\web\amour\vues\BienvenueMainVue.class
 fr\insa\beuvron\web\amour\vues\MyVerticalLayout.class
 fr\insa\beuvron\web\amour\vues\PanneauShowAime.class
 fr\insa\beuvron\web\amour\vues\ResetDatabase.class
+fr\insa\beuvron\web\amour\vues\EnteteInitialLogin.class
 fr\insa\beuvron\utils\ConsoleFdB.class
 fr\insa\beuvron\web\amour\SessionInfo.class
-fr\insa\beuvron\web\amour\vues\InitialLoginEntete.class
 fr\insa\beuvron\web\amour\bdd\GestionBdD.class
+fr\insa\beuvron\web\amour\vues\SelectSGBDCombo.class
 fr\insa\beuvron\web\amour\bdd\SQLUtils.class
 fr\insa\beuvron\web\amour\vues\PanneauModifyAime.class
-fr\insa\beuvron\web\amour\vues\RoleCombobox.class
+fr\insa\beuvron\web\amour\bdd\GestionBdD$SGBD.class
 fr\insa\beuvron\web\amour\model\Utilisateur.class
 fr\insa\beuvron\web\amour\bdd\GestionBdD$NomExisteDejaException.class
 fr\insa\beuvron\web\amour\model\Role.class
@@ -18,6 +19,7 @@ fr\insa\beuvron\web\amour\vues\NouvelUtilisateur.class
 fr\insa\beuvron\web\amour\vues\MainAfterLogin.class
 fr\insa\beuvron\web\amour\vues\ConfigGenerale.class
 fr\insa\beuvron\web\amour\bdd\SQLUtils$ResultSetAsList.class
+fr\insa\beuvron\web\amour\vues\RoleComboBox.class
 fr\insa\beuvron\web\amour\vues\MyHorizontalLayout.class
 fr\insa\beuvron\web\amour\vues\InitOrResetDatabase.class
 fr\insa\beuvron\web\amour\vues\UtilisateurSelectGrid.class
