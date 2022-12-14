@@ -18,6 +18,7 @@
  */
 package fr.insa.beuvron.web.amour.vues;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import fr.insa.beuvron.web.amour.VuePrincipale;
 
@@ -31,7 +32,8 @@ public class BdDNonAccessible extends MyVerticalLayout {
     
     public BdDNonAccessible(VuePrincipale main) {
         this.main = main;
-        this.add(new H1("Base de donnée non accessible"));
+        this.add(new H1("Problème : Base de donnée non accessible"));
+        this.add(new Button("coucou"));
         if (ConfigGenerale.AFFICHE_PANNEAU_CONNEXION_BDD) {
             this.add(new DefConnectionBDD(main));
         }
