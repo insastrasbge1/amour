@@ -35,8 +35,15 @@ public class EnteteInitialLogin extends MyHorizontalLayout {
     
     public EnteteInitialLogin(VuePrincipale main) {
         this.main = main;
+        this.setWidth("100%");
+        this.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        this.setJustifyContentMode(JustifyContentMode.CENTER);
         
         this.vbLogin = new Button("Login");
+        this.vbLogin.getStyle().set("fontWeight", "bold");
+        this.vbLogin.getStyle().set("font-size", "2em");
+        this.vbLogin.setHeight("100px");
+        this.vbLogin.setWidth("6cm");
         this.vbLogin.addClickListener((event) -> {
             this.main.setMainContent(new LoginForm(this.main));
         });
