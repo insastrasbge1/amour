@@ -30,6 +30,11 @@ public class Role {
     }
 
     @Override
+    public String toString() {
+        return "Role{" + nrole + '}';
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Role) {
             Role r = (Role) obj;

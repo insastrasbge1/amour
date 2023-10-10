@@ -20,6 +20,7 @@ package fr.insa.beuvron.web.amour.vues;
 
 import com.vaadin.flow.component.grid.Grid;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
+import fr.insa.beuvron.web.amour.model.UtilisateurAvecAime;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,35 +28,41 @@ import java.util.List;
  *
  * @author francois
  */
-public class UtilisateurGrid extends Grid<Utilisateur>{ 
+public class UtilisateurAvecAimeGrid extends Grid<UtilisateurAvecAime>{ 
     
-    private List<Utilisateur> datas;
+    private List<UtilisateurAvecAime> datas;
     
-    public UtilisateurGrid(List<Utilisateur> datas) {
+    public UtilisateurAvecAimeGrid(List<UtilisateurAvecAime> datas) {
         this.datas = datas;
         
-        Column<Utilisateur> cID = this.addColumn(Utilisateur::getId)
-                .setHeader("ID");
-        cID.setWidth("3em");
-        Column<Utilisateur> cNom = this.addColumn(Utilisateur::getNom)
+         Column<UtilisateurAvecAime> cNom = this.addColumn(UtilisateurAvecAime::getNom)
                 .setHeader("Nom");
         cNom.setSortable(true);
         
-       Column<Utilisateur> cNomRole = this.addColumn(Utilisateur::getNomRole)
-                .setHeader("Role");
-       
+         Column<UtilisateurAvecAime> cNbrAime = this.addColumn(UtilisateurAvecAime::getNbrAime)
+                .setHeader("Aime");
+        cNbrAime.setSortable(true);
+        
+         Column<UtilisateurAvecAime> cNbrAimePar = this.addColumn(UtilisateurAvecAime::getNbrAimePar)
+                .setHeader("Aimé par");
+        cNbrAimePar.setSortable(true);
+        
+         Column<UtilisateurAvecAime> cNbrAmis = this.addColumn(UtilisateurAvecAime::getNbrAmis)
+                .setHeader("Amis");
+        cNbrAmis.setSortable(true);
+        
          this.setItems(datas);
         // pour affichage compact pour transparents
         // this.setMaxHeight("12em");
     }
     
-    public void addUtilisateurs(Collection<Utilisateur> toAdd) {
+    public void addUtilisateurs(Collection<UtilisateurAvecAime> toAdd) {
         this.datas.addAll(toAdd);
         this.setItems(this.datas);
         this.getDataProvider().refreshAll();
     }
     
-    public void removeUtilisateurs(Collection<Utilisateur> toRemove) {
+    public void removeUtilisateurs(Collection<UtilisateurAvecAime> toRemove) {
         this.datas.removeAll(toRemove);
         this.setItems(this.datas);
         this.getDataProvider().refreshAll();
@@ -64,14 +71,14 @@ public class UtilisateurGrid extends Grid<Utilisateur>{
     /**
      * @return the datas
      */
-    public List<Utilisateur> getDatas() {
+    public List<UtilisateurAvecAime> getDatas() {
         return datas;
     }
 
     /**
      * @param datas the datas to set
      */
-    public void setDatas(List<Utilisateur> datas) {
+    public void setDatas(List<UtilisateurAvecAime> datas) {
         this.datas = datas;
         this.setItems(this.datas);
         this.getDataProvider().refreshAll();

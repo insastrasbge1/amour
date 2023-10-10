@@ -53,6 +53,12 @@ public class Utilisateur {
             pst.executeUpdate();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "id=" + id + ", nom=" + nom + ", pass=" + pass + ", role=" + role + '}';
+    }
+    
     
     public String getNomRole() {
         return this.role.getNrole();

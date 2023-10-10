@@ -44,7 +44,7 @@ public class EnteteAfterLogin extends MyHorizontalLayout {
         });
         this.vbListeDesUtilisateurs = new Button("liste des utilisateurs");
         this.vbListeDesUtilisateurs.addClickListener((event) -> {
-            this.main.setMainContent(new ListeDesUtilisateurs(this.main));
+            this.main.setMainContent(new ListeDesUtilisateursAvecAime(this.main));
         });
         this.vbGestionAmours = new Button("Gérer vos amours");
         this.vbGestionAmours.addClickListener((event) -> {

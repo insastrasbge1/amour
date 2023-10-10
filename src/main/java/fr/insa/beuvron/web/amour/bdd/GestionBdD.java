@@ -21,6 +21,7 @@ package fr.insa.beuvron.web.amour.bdd;
 import fr.insa.beuvron.utils.ConsoleFdB;
 import fr.insa.beuvron.web.amour.model.Role;
 import fr.insa.beuvron.web.amour.model.Utilisateur;
+import fr.insa.beuvron.web.amour.model.UtilisateurAvecAime;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -124,7 +125,8 @@ public class GestionBdD {
 
     public static Connection defautConnect()
             throws ClassNotFoundException, SQLException {
-        return connectGeneralPostGres("localhost", 5439, "postgres", "postgres", "pass");
+//        return connectGeneralPostGres("localhost", 5439, "postgres", "postgres", "pass");
+        return connectGeneralMySQL("92.222.25.165", 3306, "m3_fdebertranddeb01", "m3_fdebertranddeb01", "monPass");
     }
 
     public static Connection connectGeneralMySQL(String host,
@@ -545,6 +547,34 @@ public class GestionBdD {
         }
     }
 
+    public static List<UtilisateurAvecAime> tousLesUtilisateursAvecAime(Connection con) throws SQLException {
+        List<UtilisateurAvecAime> res = new ArrayList<>();
+        try (PreparedStatement pst = con.prepareStatement(
+                "select fdbutilisateur.id as uid,nom,pass,fdbrole.id as rid,nrole, "
+                + "(select count(*) from fdbaime where u1 = fdbutilisateur.id) as nbraime,\n"
+                + "(select count(*) from fdbaime where u2 = fdbutilisateur.id) as nbraimepar,\n"
+                + "(select count(*) "
+                        + " from fdbaime as a1"
+                        + "    join fdbaime as a2 on a1.u2 = a2.u1 where a1.u1 = fdbutilisateur.id and a1.u1 = a2.u2) as nbrami\n"
+                + " from fdbutilisateur "
+                + "   join fdbrole on fdbutilisateur.role = fdbrole.id"
+                + " order by nom asc")) {
+
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    res.add(new UtilisateurAvecAime(rs.getInt("uid"),
+                            rs.getString("nom"), rs.getString("pass"),
+                            new Role(rs.getInt("rid"), rs.getString("nrole")),
+                            rs.getInt("nbraime"),
+                            rs.getInt("nbraimepar"),
+                            rs.getInt("nbrami")
+                    ));
+                }
+                return res;
+            }
+        }
+    }
+
     public static List<Role> tousLesRoles(Connection con) throws SQLException {
         List<Role> res = new ArrayList<>();
         try (PreparedStatement pst = con.prepareStatement(
@@ -777,7 +807,7 @@ public class GestionBdD {
         while (rep != 0 && !ok) {
             System.out.println("Menu de connection");
             System.out.println("==================");
-            System.out.println("1) SGBD par defaut postgres");
+            System.out.println("1) SGBD par defaut");
             System.out.println("2) autre SGBD postgres");
             System.out.println("3) SGBDD Mysql chez freesqldatabase");
             System.out.println("4) SGBDD Mysql chez academic software");
@@ -830,31 +860,39 @@ public class GestionBdD {
     public static void menu(Connection con) {
         int rep = -1;
         while (rep != 0) {
+            int i = 1;
             System.out.println("Menu BdD Aime");
             System.out.println("=============");
-            System.out.println("1) créer/recréer la BdD initiale");
-            System.out.println("2) liste des utilisateurs");
-            System.out.println("3) liste des liens 'Aime'");
-            System.out.println("4) ajouter un utilisateur");
-            System.out.println("5) ajouter un lien 'Aime'");
-            System.out.println("6) ajouter n utilisateurs aléatoires");
+            System.out.println((i++) + ") créer/recréer la BdD initiale");
+            System.out.println((i++) + ") liste des utilisateurs");
+            System.out.println((i++) + ") liste des utilisateurs avec aime");
+            System.out.println((i++) + ") liste des liens 'Aime'");
+            System.out.println((i++) + ") ajouter un utilisateur");
+            System.out.println((i++) + ") ajouter un lien 'Aime'");
+            System.out.println((i++) + ") ajouter n utilisateurs aléatoires");
             System.out.println("0) quitter");
             rep = ConsoleFdB.entreeEntier("Votre choix : ");
             try {
-                if (rep == 1) {
+                int j = 1;
+                if (rep == (j++)) {
                     recreeTout(con);
-                } else if (rep == 2) {
+                } else if (rep == (j++)) {
                     afficheTousLesUtilisateur(con);
-                } else if (rep == 3) {
+                } else if (rep == (j++)) {
+                    List<UtilisateurAvecAime> tous = tousLesUtilisateursAvecAime(con);
+                    for (var u : tous) {
+                        System.out.println(u);
+                    }
+                } else if (rep == (j++)) {
                     afficheAmours(con);
-                } else if (rep == 4) {
+                } else if (rep == (j++)) {
                     demandeNouvelUtilisateur(con);
-                } else if (rep == 5) {
+                } else if (rep == (j++)) {
                     demandeNouvelAime(con);
-                } else if (rep == 6) {
+                } else if (rep == (j++)) {
                     System.out.println("création d'utilisateurs 'aléatoires'");
                     int combien = ConsoleFdB.entreeEntier("combien d'utilisateur : ");
-                    for (int i = 0; i < combien; i++) {
+                    for (int u = 0; u < combien; u++) {
                         boolean exist = true;
                         while (exist) {
                             String nom = "U" + ((int) (Math.random() * 10000));
